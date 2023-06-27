@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507738045850",
+    "project_id": "lab005-danp",
+    "storage_bucket": "lab005-danp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507738045850:android:f45d31b4d3430d4ce7ce23",
+        "android_client_info": {
+          "package_name": "dev.leonardom.firebasecrud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507738045850-urceklpa6bu4t4qd51oupoiam6b42s99.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyj5rjWUIfXeRtjCcnYIC8TIo1Fa7GN9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507738045850-urceklpa6bu4t4qd51oupoiam6b42s99.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
