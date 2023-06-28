@@ -17,13 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import dev.leonardom.Lab_0005.firebaseLab5.presentation.info_list.InfoListState
 
 @ExperimentalMaterialApi
 @Composable
 fun InfoList(
+    state: InfoListState,
     isRefreshing: Boolean,
     refreshData: () -> Unit,
 ) {
@@ -38,8 +41,8 @@ fun InfoList(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(
-                    items = listOf<String>()
-                ){
+                    items = state.infos
+                ){ info ->
 
                     var isDeleted by remember { mutableStateOf(false) }
                     val dismissState = rememberDismissState(
@@ -95,11 +98,26 @@ fun InfoList(
                         if(isDeleted) {
                             // TODO("DELETE BOOK")
                         } else {
-                            InfoListItem()
+                            InfoListItem(info)
                         }
                     }
                 }
             }
+        }
+
+        if(state.error.isNotBlank()){
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
+                    .align(Alignment.Center),
+                text = state.error,
+                color = Color.Red,
+                textAlign = TextAlign.Center
+            )
+        }
+        if(state.isLoading){
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center) )
         }
     }
 }

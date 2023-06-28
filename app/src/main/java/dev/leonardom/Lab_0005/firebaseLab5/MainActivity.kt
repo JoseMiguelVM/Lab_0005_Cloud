@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -15,6 +16,7 @@ import dev.leonardom.Lab_0005.firebaseLab5.navigation.Destination
 import dev.leonardom.Lab_0005.firebaseLab5.presentation.info_detail.InfoDetailScreen
 import dev.leonardom.Lab_0005.firebaseLab5.presentation.info_detail.InfoDetailViewModel
 import dev.leonardom.Lab_0005.firebaseLab5.presentation.info_list.InfoListScreen
+import dev.leonardom.Lab_0005.firebaseLab5.presentation.info_list.InfoListViewModel
 import dev.leonardom.Lab_0005.ui.theme.FirebaseCRUDTheme
 
 @ExperimentalMaterialApi
@@ -47,12 +49,17 @@ fun NavGraphBuilder.addBookList(
     composable(
         route = Destination.InfoList.route
     ){
+        val viewModel: InfoListViewModel = hiltViewModel()
+        val state = viewModel.state.value
+        val isRefreshing = viewModel.isRefreshing.collectAsState()
+
         InfoListScreen(
+            state = state,
             navigateToBookDetail = {
                 navController.navigate(Destination.InfoDetail.route)
             },
-            isRefreshing = false,
-            refreshData = {}
+            isRefreshing = isRefreshing.value,
+            refreshData = viewModel::getInfoList
         )
     }
 }

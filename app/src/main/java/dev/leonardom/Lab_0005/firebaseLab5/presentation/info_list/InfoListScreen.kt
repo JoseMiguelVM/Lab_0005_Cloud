@@ -16,6 +16,7 @@ import dev.leonardom.Lab_0005.ui.theme.Red100
 @ExperimentalMaterialApi
 @Composable
 fun InfoListScreen(
+    state : InfoListState,
     navigateToBookDetail: () -> Unit,
     isRefreshing: Boolean,
     refreshData: () -> Unit,
@@ -33,6 +34,7 @@ fun InfoListScreen(
         }
     ) {
         InfoList(
+            state = state,
             isRefreshing = isRefreshing,
             refreshData = refreshData
         )

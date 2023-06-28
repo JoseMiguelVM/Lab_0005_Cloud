@@ -1,5 +1,6 @@
 package dev.leonardom.Lab_0005.firebaseLab5.presentation.info_list.components
 
+import android.icu.text.IDNA.Info
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,12 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import dev.leonardom.Lab_0005.firebaseLab5.model.Information
 import dev.leonardom.Lab_0005.ui.theme.Red100
 import dev.leonardom.Lab_0005.ui.theme.Yellow600
 
 @ExperimentalMaterialApi
 @Composable
-fun InfoListItem() {
+fun InfoListItem(
+    info: Information
+) {
     Card(
         elevation = 0.dp
     ){
@@ -34,24 +38,16 @@ fun InfoListItem() {
                     TODO("ON ITEM CLICK")
                 }
         ){
-            Image(
-                painter = rememberImagePainter(""),
-                contentDescription = "",
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(160.dp)
-                    .padding(8.dp)
-            )
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                    .padding(vertical = 5.dp),
+                verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Title",
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    text = "Fecha: " + info.fecha,
                     style = TextStyle(
                         fontWeight = FontWeight.Medium,
                         fontSize = 18.sp
@@ -59,8 +55,8 @@ fun InfoListItem() {
                 )
 
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Author",
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    text = "Humedad del suelo: " + info.temperatura,
                     style = TextStyle(
                         fontWeight = FontWeight.Light,
                         fontSize = 14.sp,
@@ -68,38 +64,19 @@ fun InfoListItem() {
                     )
                 )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    Icon(
-                        modifier = Modifier.size(18.dp),
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Start Icon",
-                        tint = Yellow600
+                Text(
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    text = info.comentario,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Light,
+                        fontSize = 14.sp,
+                        color = Color.DarkGray
                     )
-
-                    Text(
-                        text = "4.5",
-                        style = TextStyle(
-                            color = Color.Black,
-                            fontWeight = FontWeight.Black,
-                            fontSize = 14.sp
-                        )
-                    )
-
-                    Text(
-                        text = "0 Descargas",
-                        style = TextStyle(
-                            color = Color.Black,
-                            fontWeight = FontWeight.Light,
-                            fontSize = 14.sp
-                        )
-                    )
-                }
+                )
 
                 Button(
+                    modifier = Modifier
+                        .padding(vertical = 5.dp),
                     onClick = {},
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(
@@ -107,7 +84,7 @@ fun InfoListItem() {
                     )
                 ) {
                     Text(
-                        text = "Descargar",
+                        text = "Ver mas informacion",
                         color = Color.White
                     )
                 }
